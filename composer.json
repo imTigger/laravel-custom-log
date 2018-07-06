@@ -1,0 +1,31 @@
+{
+    "name": "imtigger/laravel-custom-log",
+    "description": "Laravel Custom Log",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Tiger",
+            "email": "tiger@tiger-workshop.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "5.*",
+        "graylog2/gelf-php": "^1.5",
+        "predis/predis": "^1.1"
+    },
+        "autoload": {
+        "psr-4": {
+            "Imtigger\\LaravelCustomLog\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imtigger\\LaravelCustomLog\\LaravelCustomLogServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
