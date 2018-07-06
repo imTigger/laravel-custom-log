@@ -83,11 +83,11 @@ Add config into `.env`, you may enable multiple loggers
 
 Edit your `bootstrap/app.php`, add this before returning the application
 
-`
+```
 $app->configureMonologUsing(function ($monolog) {
-    $monolog->pushHandler(CustomLog::getSystemHandler());
+    $monolog->pushHandler(Imtigger\LaravelCustomLog\CustomLog::getSystemHandler());
 });
-`
+```
 ## Register as Laravel logger (Laravel >= 5.6)
 
 Coming soon
