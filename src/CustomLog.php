@@ -20,6 +20,17 @@ class CustomLog
 {
     private static $channels = [];
 
+    /**
+     * Create a custom Monolog instance.
+     *
+     * @param  array  $config
+     * @return \Monolog\Logger
+     */
+    public function __invoke(array $config)
+    {
+        return self::getSystemLogger();
+    }
+
     public static function getChannel($channel) {
         if (isset(self::$channels[$channel])) {
             return self::$channels[$channel];

@@ -7,8 +7,8 @@ Laravel failsafe custom logging library
 - Log to Redis
 - Log to syslog (Local/Remote)
 - Log to Graylog (TCP/UDP)
-- (Optional) Failsafe feature (Don't throw any exceptions in case logger fails)
-- (Optional) Replaces Laravel logger() call
+- (Optional) Failsafe (Don't throw any exceptions in case logger fails)
+- (Optional) Replaces Laravel log
 
 ## Installation
 
@@ -79,7 +79,7 @@ Add config into `.env`, you may enable multiple loggers
 
 `CustomLog::log($level, $channel, $message, $context)`
 
-## Replace Laravel logger() call (Laravel <= 5.5)
+## Replace Laravel Log (Laravel <= 5.5)
 
 Edit your `bootstrap/app.php`, add this before returning the application
 
@@ -88,6 +88,13 @@ $app->configureMonologUsing(function ($monolog) {
     $monolog->pushHandler(Imtigger\LaravelCustomLog\CustomLog::getSystemHandler());
 });
 ```
-## Register as Laravel logger (Laravel >= 5.6)
+## Register as Laravel logger channel (Laravel >= 5.6)
 
-Coming soon
+Edit your `config/logging.php`, add this to the `channels` array
+
+```
+'customlog' => [
+    'driver' => 'custom',
+    'via' => Imtigger\LaravelCustomLog\CustomLog::class,
+]
+```
