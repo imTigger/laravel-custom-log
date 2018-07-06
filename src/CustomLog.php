@@ -80,11 +80,15 @@ class CustomLog
         return $handlers;
     }
 
+    public static function getSystemLogger() {
+        return self::getChannel('laravel');
+    }
+
     public static function getSystemHandler() {
         if (Config::get('custom-log.failsafe')) {
-            return new WhatFailureGroupHandler(self::getChannel('laravel')->getHandlers());
+            return new WhatFailureGroupHandler(self::getSystemLogger()->getHandlers());
         } else {
-            return new GroupHandler(self::getChannel('laravel')->getHandlers());
+            return new GroupHandler(self::getSystemLogger()->getHandlers());
         }
     }
 
