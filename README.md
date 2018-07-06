@@ -9,7 +9,7 @@ Laravel failsafe custom logging library
 - Log to Graylog (TCP/UDP)
 - (Optional) Failsafe (Don't throw any exceptions in case logger fails)
 - (Optional) Replace Laravel log (Laravel <= 5.5)
-- (Optional) Register as Laravel logger channel (Laravel <= 5.5)
+- (Optional) Register as Laravel logger channel (Laravel >= 5.6)
 
 ## Installation
 
