@@ -8,7 +8,8 @@ Laravel failsafe custom logging library
 - Log to syslog (Local/Remote)
 - Log to Graylog (TCP/UDP)
 - (Optional) Failsafe (Don't throw any exceptions in case logger fails)
-- (Optional) Replaces Laravel log
+- (Optional) Replace Laravel log (Laravel <= 5.5)
+- (Optional) Register as Laravel logger channel (Laravel <= 5.5)
 
 ## Installation
 
@@ -28,11 +29,11 @@ Publish MySQL Migration (Optional, for Log to MySQL)
 
 ## Choose Log Destinations
 
-Add config into `.env`, you may enable multiple loggers
+Add config into `.env`, you may enable multiple destinations
 
 ### File
 
-- Log to File cannot be configured nor disabled at this monent
+- Log to File cannot be configured nor disabled at this moment
 
 ### MySQL
 
@@ -79,7 +80,7 @@ Add config into `.env`, you may enable multiple loggers
 
 `CustomLog::log($level, $channel, $message, $context)`
 
-## Replace Laravel Log (Laravel <= 5.5)
+## Replace Laravel log (Laravel <= 5.5)
 
 Edit your `bootstrap/app.php`, add this before returning the application
 
