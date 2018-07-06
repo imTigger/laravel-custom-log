@@ -26,9 +26,13 @@ Publish MySQL Migration (Optional, for Log to MySQL)
 
 `php artisan vendor:publish --provider="Imtigger\\LaravelCustomLog\\LaravelCustomLogServiceProvider" --tag=migration`
 
-## Choice Log Destinations
+## Choose Log Destinations
 
-Place config into `.env`
+Add config into `.env`, you may enable multiple loggers
+
+### File
+
+- Log to File cannot be configured nor disabled at this monent
 
 ### MySQL
 
