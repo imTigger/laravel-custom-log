@@ -15,9 +15,9 @@ Laravel failsafe custom logging library
 
 `composer require imtigger/laravel-custom-log`
 
-On Laravel 5.4 and below, add this line to your `config/app.php`
+On Laravel 5.4 and below, add the ServiceProvider to your `config/app.php`
 
-`Illuminate\Support\ServiceProvider\LaravelCustomLogServiceProvider`
+`Imtigger\LaravelCustomLog\LaravelCustomLogServiceProvider::class`
 
 Publish Config
 
