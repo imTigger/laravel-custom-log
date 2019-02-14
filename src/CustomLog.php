@@ -53,6 +53,10 @@ class CustomLog
         $handlers = [];
 
         $formatter = new LineFormatter(null, null, true, true);
+        
+        if (Config::get('custom-log.stacktrace')) {
+            $formatter->includeStacktraces(true);
+        }
 
         $fileHandler = new RotatingFileHandler(storage_path() . "/logs/{$channel}.log",  0, Logger::DEBUG, true, 0666, false);
         $fileHandler->setFormatter($formatter);

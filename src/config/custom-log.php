@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'failsafe' => true,
+    'failsafe' => => env('CUSTOM_LOG_FAILSAFE', true),
+    'stacktrace' => env('CUSTOM_LOG_STACKTRACE', false),
     'mysql' => [
         'enable' => env('CUSTOM_LOG_MYSQL_ENABLE', false),
         'connection' => env('DB_LOG_CONNECTION', 'mysql'),
