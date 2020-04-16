@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'failsafe' => => env('CUSTOM_LOG_FAILSAFE', true),
+    'failsafe' => env('CUSTOM_LOG_FAILSAFE', true),
     'stacktrace' => env('CUSTOM_LOG_STACKTRACE', false),
     'text' => [
         'enable' => env('CUSTOM_LOG_TEXT_ENABLE', true),
