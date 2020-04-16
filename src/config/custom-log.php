@@ -3,8 +3,8 @@
 return [
     'failsafe' => env('CUSTOM_LOG_FAILSAFE', true),
     'stacktrace' => env('CUSTOM_LOG_STACKTRACE', false),
-    'text' => [
-        'enable' => env('CUSTOM_LOG_TEXT_ENABLE', true),
+    'file' => [
+        'enable' => env('CUSTOM_LOG_FILE_ENABLE', true),
     ],
     'mysql' => [
         'enable' => env('CUSTOM_LOG_MYSQL_ENABLE', false),
