@@ -33,7 +33,7 @@ Add config into `.env`, you may enable multiple destinations
 
 ### File
 
-- CUSTOM_LOG_TEXT_ENABLE (true|false, default=true)
+- CUSTOM_LOG_FILE_ENABLE (true|false, default=true)
 
 ### MySQL
 
