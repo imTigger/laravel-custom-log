@@ -58,9 +58,11 @@ class CustomLog
             $formatter->includeStacktraces(true);
         }
 
-        $fileHandler = new RotatingFileHandler(storage_path() . "/logs/{$channel}.log",  0, Logger::DEBUG, true, 0666, false);
-        $fileHandler->setFormatter($formatter);
-        $handlers[] = $fileHandler;
+        if (Config::get('custom-log.file.enable', true)) {
+            $fileHandler = new RotatingFileHandler(storage_path() . "/logs/{$channel}.log",  0, Logger::DEBUG, true, 0666, false);
+            $fileHandler->setFormatter($formatter);
+            $handlers[] = $fileHandler;
+        }
 
         if (Config::get('custom-log.mysql.enable')) {
             $mysqlHandler = new MysqlHandler(Config::get('custom-log.mysql.connection'), Config::get('custom-log.mysql.table'));
