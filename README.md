@@ -33,7 +33,7 @@ Add config into `.env`, you may enable multiple destinations
 
 ### File
 
-- Log to File cannot be configured nor disabled at this moment
+- CUSTOM_LOG_TEXT_ENABLE (true|false, default=true)
 
 ### MySQL
 
