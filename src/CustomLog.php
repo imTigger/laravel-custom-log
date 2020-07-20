@@ -59,7 +59,7 @@ class CustomLog
             $formatter->includeStacktraces(true);
         }
         
-        if (Config::get('custom-log.console.enable', true)) {
+        if (Config::get('custom-log.console.enable', false)) {
             $consoleHandler = new StreamHandler('php://stdout', Logger::DEBUG);
             $consoleHandler->setFormatter($formatter);
             $handlers[] = $consoleHandler;
