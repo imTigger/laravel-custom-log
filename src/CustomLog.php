@@ -57,6 +57,12 @@ class CustomLog
         if (Config::get('custom-log.stacktrace')) {
             $formatter->includeStacktraces(true);
         }
+        
+        if (Config::get('custom-log.console.enable', true)) {
+            $consoleHandler = new StreamHandler('php://stdout', Logger::DEBUG);
+            $consoleHandler->setFormatter($formatter);
+            $handlers[] = $consoleHandler;
+        }
 
         if (Config::get('custom-log.file.enable', true)) {
             $fileHandler = new RotatingFileHandler(storage_path() . "/logs/{$channel}.log",  0, Logger::DEBUG, true, 0666, false);

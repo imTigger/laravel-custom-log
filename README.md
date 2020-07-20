@@ -2,6 +2,7 @@
 Laravel failsafe custom logging library
 
 - Log to multiple destinations
+- Log to Console (STDOUT)
 - Log to File
 - Log to MySQL
 - Log to Redis
@@ -30,6 +31,10 @@ Publish MySQL Migration (Optional, for Log to MySQL)
 ## Choose Log Destinations
 
 Add config into `.env`, you may enable multiple destinations
+
+### Console (STDOUT)
+
+- CUSTOM_LOG_CONSOLE_ENABLE (true|false, default=false)
 
 ### File
 

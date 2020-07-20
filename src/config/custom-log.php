@@ -3,6 +3,9 @@
 return [
     'failsafe' => env('CUSTOM_LOG_FAILSAFE', true),
     'stacktrace' => env('CUSTOM_LOG_STACKTRACE', false),
+    'console' => [
+        'enable' => env('CUSTOM_LOG_CONSOLE_ENABLE', false),
+    ],
     'file' => [
         'enable' => env('CUSTOM_LOG_FILE_ENABLE', true),
     ],
