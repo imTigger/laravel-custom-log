@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redis;
 use Monolog\Handler\GelfHandler;
 use Monolog\Handler\RedisHandler;
 use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Handler\GroupHandler;
