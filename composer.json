@@ -10,10 +10,12 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "graylog2/gelf-php": "^1.5",
-        "predis/predis": "^1.1"
     },
-        "autoload": {
+    "suggest": {
+        "graylog2/gelf-php": "Required for Gelf/Graylog logging",
+        "predis/predis": "Required for Redis logging"
+    },
+    "autoload": {
         "psr-4": {
             "Imtigger\\LaravelCustomLog\\": "src"
         }

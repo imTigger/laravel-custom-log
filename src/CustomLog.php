@@ -2,10 +2,7 @@
 
 namespace Imtigger\LaravelCustomLog;
 
-use App;
 use Imtigger\LaravelCustomLog\MysqlHandler;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Redis;
 use Monolog\Handler\GelfHandler;
 use Monolog\Handler\RedisHandler;
 use Monolog\Handler\RotatingFileHandler;
@@ -38,7 +35,7 @@ class CustomLog
         } else {
             $log = new Logger($channel);
 
-            if (Config::get('custom-log.failsafe')) {
+            if (config('custom-log.failsafe')) {
                 $log->pushHandler(new WhatFailureGroupHandler(self::getHandlers($channel)));
             } else {
                 $log->pushHandler(new GroupHandler(self::getHandlers($channel)));
@@ -54,47 +51,41 @@ class CustomLog
         $handlers = [];
 
         $formatter = new LineFormatter(null, null, true, true);
-        
-        if (Config::get('custom-log.stacktrace')) {
+
+        if (config('custom-log.stacktrace')) {
             $formatter->includeStacktraces(true);
         }
-        
-        if (Config::get('custom-log.console.enable', false)) {
+
+        if (config('custom-log.console.enable', false)) {
             $consoleHandler = new StreamHandler('php://stdout', Logger::DEBUG);
             $consoleHandler->setFormatter($formatter);
             $handlers[] = $consoleHandler;
         }
 
-        if (Config::get('custom-log.file.enable', true)) {
+        if (config('custom-log.file.enable', true)) {
             $fileHandler = new RotatingFileHandler(storage_path() . "/logs/{$channel}.log",  0, Logger::DEBUG, true, 0666, false);
             $fileHandler->setFormatter($formatter);
             $handlers[] = $fileHandler;
         }
 
-        if (Config::get('custom-log.mysql.enable')) {
-            $mysqlHandler = new MysqlHandler(Config::get('custom-log.mysql.connection'), Config::get('custom-log.mysql.table'));
-            $mysqlHandler->setFormatter($formatter);
-            $handlers[] = $mysqlHandler;
-        }
-
-        if (Config::get('custom-log.redis.enable')) {
-            $redisHandler = new RedisHandler(Redis::connection(Config::get('custom-log.redis.connection'))->client(), Config::get('custom-log.redis.key'));
+        if (config('custom-log.redis.enable')) {
+            $redisHandler = new RedisHandler(\Illuminate\Support\Facades\Redis::connection(config('custom-log.redis.connection'))->client(), config('custom-log.redis.key'));
             $handlers[] = $redisHandler;
         }
 
-        if (Config::get('custom-log.syslog.enable')) {
-            if (Config::get('custom-log.syslog.host')) {
-                $handlers[] = new SyslogUdpHandler(Config::get('custom-log.syslog.host'), Config::get('custom-log.syslog.port'), LOG_USER, Logger::DEBUG, true, Config::get('times.application_name'));
+        if (config('custom-log.syslog.enable')) {
+            if (config('custom-log.syslog.host')) {
+                $handlers[] = new SyslogUdpHandler(config('custom-log.syslog.host'), config('custom-log.syslog.port'), LOG_USER, Logger::DEBUG, true, config('times.application_name'));
             } else {
-                $handlers[] = new SyslogHandler(Config::get('times.application_name'));
+                $handlers[] = new SyslogHandler(config('times.application_name'));
             }
         }
 
-        if (Config::get('custom-log.gelf.enable')) {
-            if (Config::get('custom-log.gelf.protocol') == 'TCP') {
-                $transport = new \Gelf\Transport\TcpTransport(Config::get('custom-log.gelf.host'), Config::get('custom-log.gelf.port'));
+        if (config('custom-log.gelf.enable')) {
+            if (config('custom-log.gelf.protocol') == 'TCP') {
+                $transport = new \Gelf\Transport\TcpTransport(config('custom-log.gelf.host'), config('custom-log.gelf.port'));
             } else {
-                $transport = new \Gelf\Transport\UdpTransport(Config::get('custom-log.gelf.host'), Config::get('custom-log.gelf.port'), \Gelf\Transport\UdpTransport::CHUNK_SIZE_LAN);
+                $transport = new \Gelf\Transport\UdpTransport(config('custom-log.gelf.host'), config('custom-log.gelf.port'), \Gelf\Transport\UdpTransport::CHUNK_SIZE_LAN);
             }
             $publisher = new \Gelf\Publisher($transport);
             $gelfHandler = new GelfHandler($publisher);
@@ -109,7 +100,7 @@ class CustomLog
     }
 
     public static function getSystemHandler() {
-        if (Config::get('custom-log.failsafe')) {
+        if (config('custom-log.failsafe')) {
             return new WhatFailureGroupHandler(self::getSystemLogger()->getHandlers());
         } else {
             return new GroupHandler(self::getSystemLogger()->getHandlers());
