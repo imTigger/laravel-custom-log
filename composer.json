@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.0.0"
     },
     "suggest": {
         "graylog2/gelf-php": "Required for Gelf/Graylog logging",
